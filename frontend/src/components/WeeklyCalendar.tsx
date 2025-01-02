@@ -48,15 +48,20 @@ const WeeklyCalendar: React.FC<CalendarProps> = ({ submissionCalendar }) => {
 
   // STEP 3: For each of the last 7 days, check if dailyCounts > 0 and display accordingly.
   return (
-    <div style={{ display: 'flex', gap: '1rem' }}>
+    <div className="weekly-calendar">
       {last7Days.map((dayTs) => {
         const submissionCount = dailyCounts[dayTs] || 0;
         const dateString = new Date(dayTs * 1000).toLocaleDateString();
 
+        // Instead of 1/1/2025, display Jan 1
+        const [month, day] = dateString.split('/');
+        const monthName = new Date(dayTs * 1000).toLocaleString('default', { month: 'short' });
+        const dateStringUpdated = `${monthName} ${day}`;
+  
         return (
-          <div key={dayTs} style={{ textAlign: 'center' }}>
-            <div>{submissionCount > 0 ? '✅' : '❌'}</div>
-            <small>{dateString}</small>
+          <div key={dayTs} className="day">
+            <div className="check">{submissionCount > 0 ? '✅' : '❌'}</div>
+            <small className="day-date">{dateStringUpdated}</small>
           </div>
         );
       })}

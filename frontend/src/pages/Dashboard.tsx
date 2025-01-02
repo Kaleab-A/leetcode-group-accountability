@@ -35,16 +35,18 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '1rem' }}>
-      <h1>Dashboard</h1>
-
+    <div className="main-content">
+      <h1 className="dashboard-title">Dashboard</h1>
+  
       {groupData && (
-        <div>
-          <h2>
+        <div className="dashboard-content">
+          <h2 className="group-info">
             {groupData.groupName} (ID: {groupData.groupID})
           </h2>
-          <button onClick={handleRefreshStats}>Refresh Stats</button>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginTop: '1rem' }}>
+          <button className="refresh-button" onClick={handleRefreshStats}>
+            Refresh Stats
+          </button>
+          <div className="members-container">
             {groupData.members.map((member: any) => (
               <GroupMemberCard key={member.username} member={member} />
             ))}

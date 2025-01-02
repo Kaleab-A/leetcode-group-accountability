@@ -35,19 +35,24 @@ const GroupInfo: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '1rem' }}>
-      <h1>Group Info</h1>
-
+    <div className="main-content">
+      <h1 className="group-info-title">Group Info</h1>
+  
       {groupData && (
         <>
-          <h2>
-            {groupData.groupName} (ID: {groupData.groupID})
+          <h2 className="group-info-header">
+            {groupData.groupName} (ID: <span className="group-id">{groupData.groupID}</span>)
           </h2>
-          <ul>
+          <ul className="members-list">
             {groupData.members.map((m: any) => (
-              <li key={m.username}>
-                {m.username}{' '}
-                <button onClick={() => handleRemoveUser(m.username)}>Remove</button>
+              <li key={m.username} className="member-item">
+                <span className="member-name">{m.username}</span>
+                <button
+                  className="remove-button"
+                  onClick={() => handleRemoveUser(m.username)}
+                >
+                  Remove
+                </button>
               </li>
             ))}
           </ul>

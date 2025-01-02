@@ -21,7 +21,7 @@ const CreateGroup: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '1rem' }}>
+    <div style={{ padding: '1rem' }} className="main-content">
       <h1>Create a Group</h1>
       <div>
         <label>Group Name: </label>

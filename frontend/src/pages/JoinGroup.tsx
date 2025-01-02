@@ -25,7 +25,7 @@ const JoinGroup: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '1rem' }}>
+    <div style={{ padding: '1rem' }} className="main-content">
       <h1>Join a Group</h1>
       <div>
         <label>Group ID: </label>

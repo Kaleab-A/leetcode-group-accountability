@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, NavLink} from 'react-router-dom';
 import CreateGroup from './pages/CreateGroup';
 import JoinGroup from './pages/JoinGroup';
 import Dashboard from './pages/Dashboard';
@@ -12,11 +12,32 @@ function App() {
   return (
     <div>
       {/* Simple nav just for demonstration */}
-      <nav style={{ margin: '1rem' }}>
-        <Link to="/creategroup">Create Group</Link> |{' '}
-        <Link to="/joingroup">Join Group</Link> |{' '}
-        <Link to="/dashboard">Dashboard</Link> |{' '}
-        <Link to="/groupinfo">Group Info</Link>
+
+      <nav className="navbar">
+        <NavLink 
+          className={({ isActive }) => isActive ? "navbar-link active" : "navbar-link"} 
+          to="/creategroup"
+        >
+          Create Group
+        </NavLink>
+        <NavLink 
+          className={({ isActive }) => isActive ? "navbar-link active" : "navbar-link"} 
+          to="/joingroup"
+        >
+          Join Group
+        </NavLink>
+        <NavLink 
+          className={({ isActive }) => isActive ? "navbar-link active" : "navbar-link"} 
+          to="/dashboard"
+        >
+          Dashboard
+        </NavLink>
+        <NavLink 
+          className={({ isActive }) => isActive ? "navbar-link active" : "navbar-link"} 
+          to="/groupinfo"
+        >
+          Group Info
+        </NavLink>
       </nav>
 
       <Routes>

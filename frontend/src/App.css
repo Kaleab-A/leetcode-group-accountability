@@ -1,70 +1,98 @@
-/* App.css */
-
-/* Reset or normalize minimal styles */
+/* General Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Body */
+/* Body Styling */
 body {
   font-family: Arial, sans-serif;
-  background: #f7f8fa;
+  background-color: #f7f8fa;
   color: #333;
+  line-height: 1.6;
 }
+/* Main Content */
+.main-content {
+  padding: 2rem;
+  margin: auto;
+  border-radius: 8px;
 
-/* Navigation bar */
-nav {
-  background-color: #fff;
+  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  padding: 0.75rem 1rem;
+
   display: flex;
-  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-nav a {
-  text-decoration: none;
+/* Title Styles */
+.dashboard-title {
+  font-size: 2rem;
   color: #333;
-  font-weight: 500;
-}
-
-nav a:hover {
-  color: #007bff;
-}
-
-/* Page container */
-.page-container {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 1rem;
-  background: #fff;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-/* Headings */
-h1, h2, h3 {
   margin-bottom: 1rem;
+  text-align: center;
 }
 
-/* Form / Input styles */
+.dashboard-content {
+  width: 100%;
+}
+
+/* Group Information */
+.group-info {
+  font-size: 1.5rem;
+  color: #555;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Refresh Button */
+.refresh-button {
+  display: block;
+  margin: 1rem auto;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.refresh-button:hover {
+  background-color: #0056b3;
+}
+
+/* Members Container */
+.members-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
 label {
-  display: inline-block;
-  margin-bottom: 0.25rem;
+  display: block;
+  margin-bottom: 0.5rem;
   font-weight: 600;
+  color: #555;
 }
 
 input[type="text"],
-input[type="password"],
-input[type="email"],
 textarea {
-  width: 100%;
-  padding: 0.5rem;
+  width: 500px;
+  padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 1rem;
   font-size: 1rem;
+}
+
+input[type="text"]:focus {
+  border-color: #007bff;
+  outline: none;
 }
 
 /* Buttons */
@@ -74,56 +102,195 @@ button {
   color: #fff;
   border: none;
   border-radius: 4px;
-  padding: 0.6rem 1.2rem;
+  padding: 0.75rem 1.5rem;
   font-size: 1rem;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
   background-color: #0056b3;
 }
 
-/* Card style (e.g., for each member) */
+/* Navigation */
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5rem 2rem;
+  gap: 2rem; /* Space between items */
+}
+
+.navbar-link {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  background-color: transparent;
+}
+
+.navbar-link:hover {
+  background-color: #f1f1f1;
+  border-color: #007bff;
+  color: #0056b3;
+}
+
+/* Active Link Style */
+.navbar-link.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #0056b3;
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+.flex {
+  display: flex;
+  gap: 1rem;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+/* Alerts */
+.alert {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+
+/* Group Member Card Styles */
 .card {
   border: 1px solid #ccc;
   background: #fff;
-  border-radius: 6px;
-  padding: 1rem;
-  width: 250px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: calc(32% - 1rem); /* Three cards in a row with spacing */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.card + .card {
-  margin-left: 1rem;
-}
-
-.card h3 {
+.card-title {
+  font-size: 1.25rem;
+  color: #333;
   margin-bottom: 0.5rem;
 }
 
-/* Weekly Calendar styles */
+.card-highlight {
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Weekly Calendar Styles */
 .weekly-calendar {
   display: flex;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
+  justify-content: space-between;
+  margin-top: 1rem;
+  gap: 0.5rem;
 }
 
-.weekly-calendar .day {
+.day {
   text-align: center;
-  width: 40px;
-  padding: 0.5rem;
-  background: #f0f0f0;
+  flex: 1;
   border-radius: 4px;
+  background: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+  padding: 0.4rem;  
+  margin-right: 0.3rem;
 }
 
-/* For check or x icons */
-.weekly-calendar .day .check {
-  font-size: 1.25rem;
-  display: block;
+.day .check {
+  font-size: 1.5rem;
   margin-bottom: 0.25rem;
 }
 
-/* Utility classes */
-.text-center {
+.day-date {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* Members Container for Flex Layout */
+.members-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+/* --------------------- Group Info Page -------------------------  */
+
+/* Page Title */
+.group-info-title {
+  font-size: 2rem;
+  color: #333;
   text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Group Info Header */
+.group-info-header {
+  font-size: 1.5rem;
+  color: #555;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.group-id {
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Members List */
+.members-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.member-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+/* Member Name */
+.member-name {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Remove Button */
+.remove-button {
+  background-color: #ff4d4f;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.remove-button:hover {
+  background-color: #d9363e;
 }
