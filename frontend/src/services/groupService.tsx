@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:4000/api/groups';
+// const API_BASE = 'http://localhost:4000/api/groups';
+let API_BASE = process.env.REACT_APP_BACKEND_URL || 'http://localhost:4000';
+API_BASE += '/api/groups';
+
 
 export async function createGroup(groupName?: string) {
   const response = await axios.post(API_BASE, { groupName });
