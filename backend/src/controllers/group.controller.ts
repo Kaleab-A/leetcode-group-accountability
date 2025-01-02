@@ -25,40 +25,50 @@ export const createGroup: RequestHandler = async (req, res, next) => {
   }
 };
 
-// JOIN group by groupID, add user
+// JOIN a group
 export const joinGroup: RequestHandler = async (req, res, next) => {
-  try {
-    const { groupID } = req.params;
-    const { username } = req.body;
-
-    const group = await GroupModel.findOne({ groupID });
-    if (!group) {
+    try {
+      const { groupID } = req.params;
+      const { username } = req.body;
+  
+      const group = await GroupModel.findOne({ groupID });
+      if (!group) {
         res.status(404).json({ error: 'Group not found' });
         return;
+      }
+  
+      // Check if user already exists
+      const existingMember = group.members.find(m => m.username === username);
+  
+      if (existingMember) {
+        // Instead of returning 400, just respond with success & let frontend "log in" the user
+        res.status(200).json({
+          message: 'User already in group. Logging in user...',
+          groupID
+        });
+        return;
+      }
+  
+      // Otherwise, create minimal member info
+      group.members.push({
+        username,
+        totalSolved: 0,
+        acceptanceRate: 0,
+        ranking: 0,
+        submissionCalendar: {}
+      });
+  
+      await group.save();
+  
+      res.status(200).json({
+        message: 'User added to group',
+        groupID
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
     }
-
-    // Check if user already exists
-    const existingMember = group.members.find(m => m.username === username);
-    if (existingMember) {
-      res.status(400).json({ error: 'User already in group' });
-    }
-
-    // Create minimal member info
-    group.members.push({
-      username,
-      totalSolved: 0,
-      acceptanceRate: 0,
-      ranking: 0,
-      submissionCalendar: {}
-    });
-
-    await group.save();
-    res.status(200).json({ message: 'User added to group', groupID });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
+  };
 
 // REMOVE user from group
 export const removeUser: RequestHandler = async (req, res, next) => {
@@ -112,6 +122,8 @@ export const refreshGroupStats: RequestHandler = async (req, res, next) => {
       try {
         const response = await axios.get(url);
         const data = response.data;
+
+        console.log(`Fetched stats for user ${member.username}`, data);
 
         // Update member fields
         member.totalSolved = data.totalSolved || member.totalSolved;
