@@ -229,7 +229,7 @@ button:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  justify-content: space-between;
+  justify-content: start;
 }
 
 /* --------------------- Group Info Page -------------------------  */
