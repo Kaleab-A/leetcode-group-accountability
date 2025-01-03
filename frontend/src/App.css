@@ -194,21 +194,6 @@ button:hover {
   color: #007bff;
 }
 
-/* Header Row: Card Content + StreakCounter */
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start; /* Align top of the elements */
-  margin-bottom: 1rem; /* Space between header and WeeklyCalendar */
-}
-
-/* Card Content Styling */
-.card-content {
-  flex: 1; /* Allow content to take as much space as needed */
-  margin-right: 1rem; /* Space between card-content and streak-counter */
-}
-
-
 /* Weekly Calendar Styles */
 .weekly-calendar {
   display: flex;
@@ -310,48 +295,3 @@ button:hover {
 .remove-button:hover {
   background-color: #d9363e;
 }
-
-/* --------------------- Add Streak Counter -------------------------  */
-.streak-counter {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: auto;
-  font-size: 1rem;
-}
-
-@keyframes glow {
-  from {
-    box-shadow: 0 0 10px #ff4500;
-  }
-  to {
-    box-shadow: 0 0 20px #ff4500;
-  }
-}
-
-.streak-counter.active {
-  border-color: #ff4500;
-  background-color: #fff3e0;
-  animation: glow 1s infinite alternate;
-}
-
-.streak-counter.inactive {
-  border-color: #ccc;
-  background-color: #f7f7f7;
-  opacity: 0.7;
-}
-
-/* Align the fire icon and text in one row */
-.streak-content {
-  display: flex;
-  align-items: center;
-  gap: 8px; /* Space between fire icon and text */
-}
-
-.fire-icon {
-  display: inline-block;
-}
-
