@@ -59,7 +59,12 @@ const WeeklyCalendar: React.FC<CalendarProps> = ({ submissionCalendar }) => {
 
         // Check for missed submissions and determine if ice icon should be used
         const previousSubmissionCount = index > 0 ? dailyCounts[last7Days[index - 1]] || 0 : 0;
-        const isMiss = submissionCount === 0 && previousSubmissionCount > 0;
+
+        // Determine the icon logic:
+        // - If today (last day) has no submissions, it remains ❌.
+        // - Otherwise, use 🧊 if it's a miss between two ticks.
+        const isToday = index === last7Days.length - 1;
+        const isMiss = !isToday && submissionCount === 0 && previousSubmissionCount > 0;
 
         return (
           <div key={dayTs} className="day">
