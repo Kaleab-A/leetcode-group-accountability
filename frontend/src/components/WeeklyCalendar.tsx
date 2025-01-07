@@ -25,7 +25,6 @@ const WeeklyCalendar: React.FC<CalendarProps> = ({ submissionCalendar }) => {
       normalized[dayStartTs] += submissions;
     });
 
-    console.log(normalized);
     return normalized;
   }, [submissionCalendar]);
 
@@ -44,7 +43,6 @@ const WeeklyCalendar: React.FC<CalendarProps> = ({ submissionCalendar }) => {
       // Go to the previous day
       now.setUTCDate(now.getUTCDate() - 1);
     }
-    console.log("last7Days", result);
 
     return result;
   }, [submissionCalendar]);
@@ -52,16 +50,22 @@ const WeeklyCalendar: React.FC<CalendarProps> = ({ submissionCalendar }) => {
   // STEP 3: For each of the last 7 days, check if dailyCounts > 0 and display accordingly.
   return (
     <div className="weekly-calendar">
-      {last7Days.map((dayTs) => {
+      {last7Days.map((dayTs, index) => {
         const submissionCount = dailyCounts[dayTs] || 0;
         const date = new Date(dayTs * 1000);
         const monthName = date.toLocaleString('default', { month: 'short', timeZone: 'UTC' });
         const day = date.getUTCDate();
         const dateStringUpdated = `${monthName} ${day}`;
 
+        // Check for missed submissions and determine if ice icon should be used
+        const previousSubmissionCount = index > 0 ? dailyCounts[last7Days[index - 1]] || 0 : 0;
+        const isMiss = submissionCount === 0 && previousSubmissionCount > 0;
+
         return (
           <div key={dayTs} className="day">
-            <div className="check">{submissionCount > 0 ? '✅' : '❌'}</div>
+            <div className="check">
+              {submissionCount > 0 ? '✅' : isMiss ? '🧊' : '❌'}
+            </div>
             <small className="day-date">{dateStringUpdated}</small>
           </div>
         );
