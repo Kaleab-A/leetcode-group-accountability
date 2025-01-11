@@ -21,8 +21,9 @@ const StreakCounter: React.FC<CalendarProps> = ({ submissionCalendar }) => {
     let streak = 0;
     let missedStreakDay = false;
     let todayDone = false;
+    let streakCeiling = 300; // TODO: Get a more permanent solution for this
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < streakCeiling; i++) {
       const currentDayTs = Math.floor(now.getTime() / 1000);
       
       // Check previous days
